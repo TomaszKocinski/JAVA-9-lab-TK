@@ -6,6 +6,7 @@ package pl.edu.uksw.wmp.prja.laboratorium10;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Iterator;
 import javax.swing.JPanel;
 import java.util.Vector;
 /**
@@ -131,20 +132,32 @@ public class DrawPanel extends JPanel{
         if ((add_element || delete_prevoius) && LastFigure.equals(Figure.Line)) {
             VecOfLines.add(new Line(x, y, rX, rY, str,str2));
         }
-        for (Rectangle PreviousRectangle : VecOfRectangles) {
+        Iterator<Rectangle> it=VecOfRectangles.iterator();
+        while(it.hasNext()){
+            Rectangle Rectangle=it.next();
             g.setColor(new Color(0, 255, 0));
-            g.drawOval(PreviousRectangle.x - PreviousRectangle.x2, PreviousRectangle.y - PreviousRectangle.y2, PreviousRectangle.x2 * 2, PreviousRectangle.y2 * 2);
-            if (PreviousRectangle.fill) {
-                g.fillOval(PreviousRectangle.x - PreviousRectangle.x2, PreviousRectangle.y - PreviousRectangle.y2, PreviousRectangle.x2 * 2, PreviousRectangle.y2 * 2);
+            g.drawOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
+            if (Rectangle.fill) {
+                g.fillOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
             }
         }
+      
+             /*   
+        for (Rectangle Rectangle : VecOfRectangles) {
+            g.setColor(new Color(0, 255, 0));
+            g.drawOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
+            if (Rectangle.fill) {
+                g.fillOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
+            }
+        }/*/
         for (Line ElemOfLine : VecOfLines) {
              g.setColor(new Color(0, 0, 255));
             g.drawLine(ElemOfLine.x, ElemOfLine.y, ElemOfLine.x2, ElemOfLine.y2);
             g.drawString(ElemOfLine.text, ElemOfLine.x - 5, ElemOfLine.y + 5);
             g.drawString(ElemOfLine.text2, ElemOfLine.x2 - 5, ElemOfLine.y2 + 5);
+            
         }
-
+        
     }
     
 }
