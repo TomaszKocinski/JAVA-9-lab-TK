@@ -132,24 +132,14 @@ public class DrawPanel extends JPanel{
         if ((add_element || delete_prevoius) && LastFigure.equals(Figure.Line)) {
             VecOfLines.add(new Line(x, y, rX, rY, str,str2));
         }
-        Iterator<Rectangle> it=VecOfRectangles.iterator();
-        while(it.hasNext()){
-            Rectangle Rectangle=it.next();
-            g.setColor(new Color(0, 255, 0));
-            g.drawOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
-            if (Rectangle.fill) {
-                g.fillOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
-            }
-        }
-      
-             /*   
+              
         for (Rectangle Rectangle : VecOfRectangles) {
             g.setColor(new Color(0, 255, 0));
             g.drawOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
             if (Rectangle.fill) {
                 g.fillOval(Rectangle.x - Rectangle.x2, Rectangle.y - Rectangle.y2, Rectangle.x2 * 2, Rectangle.y2 * 2);
             }
-        }/*/
+        }
         for (Line ElemOfLine : VecOfLines) {
              g.setColor(new Color(0, 0, 255));
             g.drawLine(ElemOfLine.x, ElemOfLine.y, ElemOfLine.x2, ElemOfLine.y2);
