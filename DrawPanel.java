@@ -58,8 +58,8 @@ public class DrawPanel extends JPanel{
     private String xText = "Witaj!";
     int rX = 50;
     int rY = 10;
-    String str="";
-    String str2="";
+    String str="sda";
+    String str2="dsa";
     Boolean fill = false;
     Boolean delete_prevoius = false;
     Boolean add_element = true;
@@ -125,10 +125,10 @@ public class DrawPanel extends JPanel{
             VecOfRectangles.clear();
             VecOfLines.clear();
         }
-        if (add_element && LastFigure.equals(Figure.Rectangle)) {
+        if ((add_element || delete_prevoius) && LastFigure.equals(Figure.Rectangle) ) {
             VecOfRectangles.add(new Rectangle(x, y, rX, rY, fill));
         }
-        if (add_element && LastFigure.equals(Figure.Line)) {
+        if ((add_element || delete_prevoius) && LastFigure.equals(Figure.Line)) {
             VecOfLines.add(new Line(x, y, rX, rY, str,str2));
         }
         for (Rectangle PreviousRectangle : VecOfRectangles) {

@@ -14,11 +14,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import org.omg.CORBA.TIMEOUT;
 
 /**
  *
  * @author csi
  */
+class my_thread extends Thread{
+    public void run(){
+       System.out.println("MyThread running");
+       
+                    try{Thread.sleep(10);}
+                    catch(Exception e){}
+                    
+                
+    }
+}
 public class MojPanel extends JPanel {
 
     private int x = 50;
@@ -42,17 +53,17 @@ public class MojPanel extends JPanel {
 
     private JLabel lab3 = new JLabel("Współrzędne końców odcinku");
     private JLabel x1 = new JLabel("x1:");
-    private JTextField xF1 = new JTextField("", 10);
+    private JTextField xF1 = new JTextField("0", 10);
     private JLabel y1 = new JLabel("y1:");
-    private JTextField yF1 = new JTextField("", 10);
+    private JTextField yF1 = new JTextField("0", 10);
     private JLabel punkt1 = new JLabel("Punk1:");
-    private JTextField punktF1 = new JTextField("", 10);
+    private JTextField punktF1 = new JTextField("poczatkowy", 10);
     private JLabel x2 = new JLabel("x2:");
-    private JTextField xF2 = new JTextField("", 10);
+    private JTextField xF2 = new JTextField("0", 10);
     private JLabel y2 = new JLabel("y2:");
-    private JTextField yF2 = new JTextField("", 10);
+    private JTextField yF2 = new JTextField("0", 10);
     private JLabel punkt2 = new JLabel("Punkt2:");
-    private JTextField punktF2 = new JTextField("", 10);
+    private JTextField punktF2 = new JTextField("poczatkowy", 10);
 
     private JButton button1 = new JButton("Narysuj elipsę");
     private JButton button2 = new JButton("Narysuj odcinek");
@@ -115,9 +126,24 @@ public class MojPanel extends JPanel {
                 dp.setYr(Integer.valueOf(yF2.getText()));
                 dp.setLastFigure(Figure.Line);
                 dp.setStr(punktF1.getText());
-                dp.setStr2(punktF2.getText());
+                 dp.setStr2(punktF2.getText());
                 dp.repaint();
                  
+            }
+        });
+        button3.addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                th.start();
+                for (int i = 0; i < 100; i++) {
+                    dp.setX(i);
+                    dp.setXr(50);
+                    dp.setY(i);
+                    dp.setYr(50);
+                    dp.setLastFigure(Figure.Rectangle);
+                    dp.repaint();
+                    
+                }
+
             }
         });
         GroupLayout layoutMP = new GroupLayout(this);
@@ -216,10 +242,10 @@ public class MojPanel extends JPanel {
         );
     }
 
-    Thread th;
-
+    Thread th= new Thread();
+    
     private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
+        
     }
 
 }
